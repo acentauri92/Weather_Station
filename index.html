@@ -1,5 +1,6 @@
 <html>
 <head>
+<title>Smart Home</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="raphael-2.1.4.min.js"></script>
 <script src="justgage-1.1.0.min.js"></script>
@@ -11,6 +12,7 @@ console.log(url);
 function callback(data, status){
 if (status == "success") {
 volts = parseFloat(data.result);
+volts = volts*100;
 volts = volts.toFixed(3);
 g.refresh(volts);
 setTimeout(getReading, 1000);
@@ -31,9 +33,9 @@ var g = new JustGage({
 id: "gauge",
 value: 0,
 min: 0,
-max: 3.3,
-decimals: 3,
-title: "Volts"
+max: 300,
+decimals: 1,
+title: "Temperature (in Celsius)"
 });
 getReading();
 </script>
