@@ -37,29 +37,7 @@ max: 300,
 decimals: 1,
 title: "Temperature (in \u2103)"
 });
-g.setCustomRange=function(min, max){
-	 // set new min
-	   if (min !== null) {
-		g.config.min = min;
-		// TODO: update customSectors
-		g.txtMinimum = g.config.min;
-		if (g.config.humanFriendly) {
-		  g.txtMinimum = humanFriendlyNumber(g.config.min, g.config.humanFriendlyDecimal);
-		} else if (g.config.formatNumber) {
-		  g.txtMinimum = formatNumber(g.config.min);
-		}
-		if (!g.config.reverse) {
-		  g.txtMin.attr({
-			"text": g.txtMinimum
-		  });
-		  setDy(g.txtMin, g.params.minFontSize, g.params.minY);
-		} else {
-		  g.txtMax.attr({
-			"text": g.txtMinimum
-		  });
-		  setDy(g.txtMax, g.params.maxFontSize, g.params.maxY);
-		}
-	  }
+
 	g.refresh(volts, max);
 }
 getReading();
