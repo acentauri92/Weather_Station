@@ -15,6 +15,7 @@ if (status == "success") {
 volts = parseFloat(data.result);
 volts = volts*100;
 volts = volts.toFixed(3);
+light = light/100;
 g.refresh(volts);
 g.refresh(light);
 setTimeout(getReading, 1000);
