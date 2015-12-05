@@ -11,7 +11,7 @@ console.log(url);
 function callback(data, status){
 if (status == "success") {
 volts = parseFloat(data.result);
-volts = volts.toFixed(2);
+volts = volts.toFixed(3);
 g.refresh(volts);
 setTimeout(getReading, 1000);
 }
@@ -32,6 +32,7 @@ id: "gauge",
 value: 0,
 min: 0,
 max: 3.3,
+decimals: 3,
 title: "Volts"
 });
 getReading();
