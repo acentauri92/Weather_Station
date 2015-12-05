@@ -8,7 +8,6 @@
 var accessToken = "cdbb62cef07f7914ecf1a88e933d719f53b1678a";
 var deviceID = "2b0030001647343337363432"
 var url = "https://api.spark.io/v1/devices/" + deviceID + "/volts";
-var url1 = "https://api.spark.io/v1/devices/" + deviceID + "/light";
 console.log(url);
 function callback(data, status){
 if (status == "success") {
@@ -16,7 +15,6 @@ volts = parseFloat(data.result);
 volts = volts*100;
 volts = volts.toFixed(3);
 g.refresh(volts);
-g.refresh(light);
 setTimeout(getReading, 1000);
 }
 else {
@@ -25,9 +23,6 @@ alert("There was a problem");
 }
 function getReading(){
 $.get(url, {access_token: accessToken}, callback);
-}
-function getReading1(){
-$.get(url1, {access_token: accessToken}, callback);
 }
 </script>
 </head>
@@ -69,49 +64,6 @@ g.setCustomRange=function(min, max){
 }
 getReading();
 </script>
-
-</script>
-
-<div id="gauge1" class="200x160px"></div>
-<script>
-var g = new JustGage({
-id: "gauge1",
-value: 0,
-min: 1000,
-max: 4000,
-decimals: 1,
-title: "Light Intensity in V"
-});
-
-	g.setCustomRange=function(min, max){
-	 // set new min
-	   if (min !== null) {
-		g.config.min = min;
-		// TODO: update customSectors
-		g.txtMinimum = g.config.min;
-		if (g.config.humanFriendly) {
-		  g.txtMinimum = humanFriendlyNumber(g.config.min, g.config.humanFriendlyDecimal);
-		} else if (g.config.formatNumber) {
-		  g.txtMinimum = formatNumber(g.config.min);
-		}
-		if (!g.config.reverse) {
-		  g.txtMin.attr({
-			"text": g.txtMinimum
-		  });
-		  setDy(g.txtMin, g.params.minFontSize, g.params.minY);
-		} else {
-		  g.txtMax.attr({
-			"text": g.txtMinimum
-		  });
-		  setDy(g.txtMax, g.params.maxFontSize, g.params.maxY);
-		}
-	  }
-	g.refresh(light, max);
-}
-}
-getReading1();
-</script>
-
 <!--<h1>Dheeraj </h1>-->
 </body>
 </html>
