@@ -20,6 +20,13 @@ g.refresh(volts);
 g.refresh(light);
 setTimeout(getReading, 1000);
 }
+if (status == "success") {
+
+
+
+g.refresh(light);
+setTimeout(getReading, 1000);
+}
 else {
 alert("There was a problem");
 }
