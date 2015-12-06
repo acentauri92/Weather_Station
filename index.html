@@ -8,7 +8,7 @@
 var volts = "23";
 var accessToken = "7015c4c04e3025e2dedf39d44a5c2b8c0e96726a";
 var deviceID = "2b0030001647343337363432"
-var url = "https://api.spark.io/v1/devices/" + deviceID + volts;
+var url = "https://api.spark.io/v1/devices/" + deviceID +"/"+volts;
 console.log(url);
 function callback(data, status){
 if (status == "success") {
