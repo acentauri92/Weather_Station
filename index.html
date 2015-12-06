@@ -19,8 +19,10 @@ var Volts;
 var newLight;
 var arry = data.result.split(";");
 volts=arry[0];
+
 volts = volts*100;
 volts = volts.toFixed(3);
+console.log(volts);
 g.refresh(volts);
 setTimeout(getReading, 1000);
 }
