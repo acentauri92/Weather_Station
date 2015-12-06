@@ -15,8 +15,10 @@ if (status == "success") {
 	console.log("$$$###");
 	console.log(data);
 console.log(data.result);
-
-volts = parseFloat(data.result);
+var Volts;
+var newLight;
+var arry = data.result.split(";");
+volts=arry[0];
 volts = volts*100;
 volts = volts.toFixed(3);
 g.refresh(volts);
