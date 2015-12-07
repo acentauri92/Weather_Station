@@ -8,14 +8,16 @@
 var accessToken = "7015c4c04e3025e2dedf39d44a5c2b8c0e96726a";
 var deviceID = "2b0030001647343337363432"
 var url = "https://api.spark.io/v1/devices/" + deviceID + "/volt";
+
 console.log(url);
 
 function callback(data, status){
 if (status == "success") {
-	console.log("$$$###");
-	console.log(data);
+	
+console.log(data);
 console.log(data.result);
-var Volts;
+
+var volts;
 var newLight;
 var arry = data.result.split(";");
 volts=arry[0];
@@ -24,6 +26,12 @@ volts = volts*100;
 volts = volts.toFixed(3);
 console.log(volts);
 g.refresh(volts);
+
+light = arry[1];
+light = light * 10;
+light = light.toFixed(3);
+console.log(light);
+g.refresh(light);
 setTimeout(getReading, 1000);
 }
 else {
