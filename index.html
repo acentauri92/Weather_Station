@@ -28,7 +28,6 @@ console.log(volts);
 g.refresh(volts);
 
 light = arry[1];
-light = light * 10;
 light = light.toFixed(3);
 console.log(light);
 g1.refresh(light);
@@ -88,7 +87,7 @@ var g1 = new JustGage({
 id: "gauge1",
 value: 0,
 min: 0,
-max: 4,
+max: 3,
 decimals: 1,
 title: "Light Intensity in Volts"
 });
