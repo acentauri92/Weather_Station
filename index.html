@@ -126,13 +126,13 @@ getReading();
 <div align="center">
 <h1>On/Off Control</h1>	
 	
-<input type="button" onClick="switchOn()" value="ON"/>
-<input type="button" onClick="switchOff()" value="OFF"/>
+<input type="button" onClick="switchOn()" />
+<input type="button" onClick="switchOff()"/>
  </div>
  
  <script>
-var led = "";
-url = "https://api.spark.io/v1/devices/" + deviceID +"/"+led;
+var led;
+url = "https://api.spark.io/v1/devices/" + deviceID;
 function switchOn()
 {
 	led = "on";
