@@ -132,17 +132,17 @@ getReading();
  
  <script>
 var led;
-url = "https://api.spark.io/v1/devices/" + deviceID;
+url = "https://api.spark.io/v1/devices/" + deviceID + "/on";
 function switchOn()
 {
 	led = "on";
-	$.post(url, {params: led, access_token: accessToken });
+	$.post(url, {params: "on", access_token: accessToken });
 	console.log(url);
 }  
 function switchOff()
 {
 	led = "off";
-	$.post(url, {params: led, access_token: accessToken });
+	$.post(url, {params: "led", access_token: accessToken });
 	console.log(url);
 }  
 </script>
