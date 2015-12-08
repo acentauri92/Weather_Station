@@ -123,5 +123,25 @@ g1.setCustomRange=function(min, max){
 }
 getReading();   
 </script>  
+<div>
+<h1>On/Off Control</h1>	
+	
+<input type="button" onClick="switchOn()" value="ON"/>
+<input type="button" onClick="switchOff()" value="OFF"/>
+ </div>
+ 
+ <script>
+
+url = "https://api.spark.io/v1/devices/" + deviceID + "/led";
+function switchOn()
+{
+	$.post(url, {params: "on", access_token: accessToken });
+}  
+function switchOff()
+{
+	$.post(url, {params: "off", access_token: accessToken });
+}  
+</script>
+
 </body> 
 </html>
