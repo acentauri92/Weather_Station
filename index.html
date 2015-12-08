@@ -9,10 +9,12 @@ var url = "https://api.spark.io/v1/devices/" + deviceID + "/led";
 function switchOn()
 {
 	$.post(url, {params: "on", access_token: accessToken });
+	console.log(url);
 }  
 function switchOff()
 {
 	$.post(url, {params: "off", access_token: accessToken });
+	console.log(url);
 }  
 </script>
 </head>	
