@@ -5,25 +5,34 @@
 <script src="raphael-2.1.4.min.js"></script>
 <script src="justgage-1.1.0.min.js"></script>
 <script>
+
 var accessToken = "7015c4c04e3025e2dedf39d44a5c2b8c0e96726a";
 var deviceID = "2b0030001647343337363432"
-var url = "https://api.spark.io/v1/devices/" + deviceID + "/volt";
-console.log(url);
+var url111 = "https://api.spark.io/v1/devices/" + deviceID + "/volt";
+
+console.log(url111);
+
 function callback(data, status){
 if (status == "success") {
 	
 console.log(data);
 console.log(data.result);
+
 var volts;
 var newLight;
 var arry = data.result.split(";");
 volts=arry[0];
+
 volts = volts*100;
 volts = volts.toFixed(3);
 console.log(volts);
 g.refresh(volts);
+
 light = arry[1];
+//light = light*1000;
+//light = light.toFixed(3);
 console.log(light);
+
 g1.refresh(light);
 setTimeout(getReading, 1000);
 }
@@ -32,7 +41,7 @@ alert("There was a problem");
 }
 }
 function getReading(){
-$.get(url, {access_token: accessToken}, callback);
+$.get(url111, {access_token: accessToken}, callback);
 }
 </script>
 </head>
@@ -112,7 +121,27 @@ g1.setCustomRange=function(min, max){
 	  }
 	g1.refresh(light, max);
 }
-getReading();
+getReading();   
 </script>  
+<div align="center">
+<h1>On/Off Control</h1>	
+	
+<input type="button" onClick="switchOn()" value="ON"/>
+<input type="button" onClick="switchOff()" value="OFF"/>
+ </div>
+ 
+ <script>
+
+url = "https://api.spark.io/v1/devices/" + deviceID + "/led";
+function switchOn()
+{
+	$.post(url, {params: "on", access_token: accessToken });
+}  
+function switchOff()
+{
+	$.post(url, {params: "off", access_token: accessToken });
+}  
+</script>
+
 </body> 
 </html>
