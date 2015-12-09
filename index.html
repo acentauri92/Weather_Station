@@ -1,40 +1,31 @@
 <html>
 <head>
 <title>Smart Home</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/raphael-2.1.4.min.js"></script>
-<script src="js/justgage-1.1.0.min.js"></script>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,300italic' rel='stylesheet' type='text/css'>
+<script src="raphael-2.1.4.min.js"></script>
+<script src="justgage-1.1.0.min.js"></script>
 <script>
-
 var accessToken = "7015c4c04e3025e2dedf39d44a5c2b8c0e96726a";
 var deviceID = "2b0030001647343337363432"
 var url111 = "https://api.spark.io/v1/devices/" + deviceID + "/volt";
-
 console.log(url111);
-
 function callback(data, status){
 if (status == "success") {
 
-//console.log(data);
-//console.log(data.result);
-
+console.log(data);
+console.log(data.result);
 var volts;
 var newLight;
 var arry = data.result.split(";");
 volts=arry[0];
-
 volts = volts*100;
 volts = volts.toFixed(3);
-//console.log(volts);
+console.log(volts);
 g.refresh(volts);
-
 light = arry[1];
 //light = light*1000;
 //light = light.toFixed(3);
-//console.log(light);
-
+console.log(light);
 g1.refresh(light);
 setTimeout(getReading, 1000);
 }
@@ -48,28 +39,9 @@ $.get(url111, {access_token: accessToken}, callback);
 </script>
 </head>
 <body>
-	<div class="header">
-		<div class="logo"><img src="images/logo.png"></div>
-		<h2>Home Automation with the Internet of Things</h2>
-	</div>
-	<div class="content">
-	<div class="content-item">
-		<div id="gauge" class="content-item-gauge"></div>
-	</div>
-	<div class="content-item">
-		<div id="gauge1" class="content-item-gauge"></div>
-		<div class="toggler">
-		<div style="padding: 10px 0px; color: #5D7585; font-size: .9em;">LED Control</div>
-		<input type="button" onlcick="switchOn()" value="ON" class="led-switch">
-		<input type="button" onlcick="switchOff()" value="OFF" class="led-switch">
-		<!--<div class="press">
-    	<input type="checkbox" id="checked" class="cbx hidden" checked/>
-    	<label for="checked" class="lbl"></label>
-  	</div>-->
-	 </div>
-	</div>
-	<div style="clear:both"></div>
-</div>
+<h1 style = "open-sans" align = "center">Final Project</h1>
+<h2 align = "center">Home Automation with the Internet of Things</h2>
+<div id="gauge" class="200x160px"></div>
 <script>
 var g = new JustGage({
 id: "gauge",
@@ -77,15 +49,7 @@ value: 0,
 min: 0,
 max: 300,
 decimals: 1,
-title: "The Room Temperature",
-titleFontColor: "#5d7585",
-valueFontColor: "#5d7585",
-label: "in \u2103",
-levelColors: [
-          "#D4F4FF",
-          "#45C5F7",
-          "#0A486F"
-        ]
+title: "The Room Temperature (in \u2103)"
 });
 g.setCustomRange=function(min, max){
 	 // set new min
@@ -112,21 +76,18 @@ g.setCustomRange=function(min, max){
 	  }
 	g.refresh(volts, max);
 }
+getReading();
+</script>
+<!--<h1>Dheeraj </h1>-->
+<div id="gauge1" class="200x160px"></div>
+<script>
 var g1 = new JustGage({
 id: "gauge1",
 value: 0,
 min: 0,
 max: 3,
 decimals: 1,
-title: "Light Intensity",
-titleFontColor: "#5d7585",
-valueFontColor: "#5d7585",
-label: "Volts",
-levelColors: [
-          "#D4F4FF",
-          "#45C5F7",
-          "#0A486F"
-        ]
+title: "Light Intensity in Volts"
 });
 g1.setCustomRange=function(min, max){
 	 // set new min
@@ -154,6 +115,15 @@ g1.setCustomRange=function(min, max){
 	g1.refresh(light, max);
 }
 getReading();
+</script>
+<div align="center">
+<h1>On/Off Control</h1>
+
+<input type="button" onClick="switchOn()" value="ON"/>
+<input type="button" onClick="switchOff()" value="OFF"/>
+ </div>
+
+ <script>
 url = "https://api.spark.io/v1/devices/" + deviceID + "/led";
 function switchOn()
 {
