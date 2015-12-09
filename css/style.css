@@ -13,13 +13,19 @@ body{
   width: 80%;
   max-width: 300px;
 }
-
+ hr.fade-hr {
+   border: 0;
+   height: 1px;
+   background-image: linear-gradient(to right, rgba(93, 117, 133, 0), rgba(93, 117, 133, 0.3), rgba(93, 117, 133, 0));
+   width: 80%;
+ }
 .header h2{
   color: #5d7585;
   font-size: 1.1em;
-  padding: 5px 10px;
+  padding: 10px;
   text-align: center;
   font-weight: 400;
+  margin-bottom: 20px;
 }
 .content{
   padding: 20px;
