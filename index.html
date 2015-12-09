@@ -106,7 +106,29 @@ g.setCustomRange=function(min, max){
 		  setDy(g.txtMax, g.params.maxFontSize, g.params.maxY);
 		}
 	  }
-	g.refresh(volts, max);
+		// set new max
+	  if (max !== null) {
+	    g.config.max = max;
+	    // TODO: update customSectors
+
+	    g.txtMaximum = g.config.max;
+	    if (g.config.humanFriendly) {
+	      g.txtMaximum = humanFriendlyNumber(g.config.max, g.config.humanFriendlyDecimal);
+	    } else if (g.config.formatNumber) {
+	      g.txtMaximum = formatNumber(g.config.max);
+	    }
+	    if (!g.config.reverse) {
+	      g.txtMax.attr({
+	        "text": g.txtMaximum
+	      });
+	      setDy(g.txtMax, g.params.maxFontSize, g.params.maxY);
+	    } else {
+	      g.txtMin.attr({
+	        "text": g.txtMaximum
+	      });
+	      setDy(g.txtMin, g.params.minFontSize, g.params.minY);
+	    }
+	  }
 }
 var g1 = new JustGage({
 id: "gauge1",
@@ -147,7 +169,29 @@ g1.setCustomRange=function(min, max){
 		  setDy(g1.txtMax, g1.params.maxFontSize, g1.params.maxY);
 		}
 	  }
-	g1.refresh(light, max);
+		// set new max
+	  if (max !== null) {
+	    g1.config.max = max;
+	    // TODO: update customSectors
+
+	    g1.txtMaximum = g1.config.max;
+	    if (g1.config.humanFriendly) {
+	      g1.txtMaximum = humanFriendlyNumber(g1.config.max, g1.config.humanFriendlyDecimal);
+	    } else if (g1.config.formatNumber) {
+	      g1.txtMaximum = formatNumber(g1.config.max);
+	    }
+	    if (!g1.config.reverse) {
+	      g1.txtMax.attr({
+	        "text": g1.txtMaximum
+	      });
+	      setDy(g1.txtMax, g1.params.maxFontSize, g1.params.maxY);
+	    } else {
+	      g1.txtMin.attr({
+	        "text": g1.txtMaximum
+	      });
+	      setDy(g1.txtMin, g1.params.minFontSize, g1.params.minY);
+	    }
+	  }
 }
 getReading();
 url = "https://api.spark.io/v1/devices/" + deviceID + "/led";
