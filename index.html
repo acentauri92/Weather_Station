@@ -5,26 +5,16 @@
 <script src="raphael-2.1.4.min.js"></script>
 <script src="justgage-1.1.0.min.js"></script>
 <script>
-var accessToken = "7015c4c04e3025e2dedf39d44a5c2b8c0e96726a";
+var accessToken = "cdbb62cef07f7914ecf1a88e933d719f53b1678a";
 var deviceID = "2b0030001647343337363432"
-var url = "https://api.spark.io/v1/devices/" + deviceID + "/volt";
+var url = "https://api.spark.io/v1/devices/" + deviceID + "/volts";
 console.log(url);
 function callback(data, status){
 if (status == "success") {
-	
-console.log(data);
-console.log(data.result);
-var volts;
-var newLight;
-var arry = data.result.split(";");
-volts=arry[0];
+volts = parseFloat(data.result);
 volts = volts*100;
 volts = volts.toFixed(3);
-console.log(volts);
 g.refresh(volts);
-light = arry[1];
-console.log(light);
-g1.refresh(light);
 setTimeout(getReading, 1000);
 }
 else {
@@ -37,8 +27,6 @@ $.get(url, {access_token: accessToken}, callback);
 </script>
 </head>
 <body>
-<h1 style = "open-sans" align = "center">Final Project</h1>
-<h2 align = "center">Home Automation with the Internet of Things</h2>
 <div id="gauge" class="200x160px"></div>
 <script>
 var g = new JustGage({
@@ -47,7 +35,7 @@ value: 0,
 min: 0,
 max: 300,
 decimals: 1,
-title: "The Room Tempehhggfgrature (in \u2103)"
+title: "Temperature (in \u2103)"
 });
 g.setCustomRange=function(min, max){
 	 // set new min
@@ -75,44 +63,7 @@ g.setCustomRange=function(min, max){
 	g.refresh(volts, max);
 }
 getReading();
-</script>  
+</script>
 <!--<h1>Dheeraj </h1>-->
-<div id="gauge1" class="200x160px"></div>
-<script>
-var g1 = new JustGage({
-id: "gauge1",
-value: 0,
-min: 0,
-max: 3,
-decimals: 1,
-title: "Light Intensity in Volts"
-});
-g1.setCustomRange=function(min, max){
-	 // set new min
-	   if (min !== null) {
-		g1.config.min = min;
-		// TODO: update customSectors
-		g1.txtMinimum = g1.config.min;
-		if (g1.config.humanFriendly) {
-		  g1.txtMinimum = humanFriendlyNumber(g1.config.min, g1.config.humanFriendlyDecimal);
-		} else if (g1.config.formatNumber) {
-		  g1.txtMinimum = formatNumber(g1.config.min);
-		}
-		if (!g1.config.reverse) {
-		  g1.txtMin.attr({
-			"text": g1.txtMinimum
-		  });
-		  setDy(g1.txtMin, g1.params.minFontSize, g1.params.minY);
-		} else {
-		  g1.txtMax.attr({
-			"text": g1.txtMinimum
-		  });
-		  setDy(g1.txtMax, g1.params.maxFontSize, g1.params.maxY);
-		}
-	  } 
-	g1.refresh(light, max);
-}
-getReading();
-</script>  
-</body> 
+</body>
 </html>
